@@ -5,14 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Simple styling for the navigation bar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+ padding: 10px 20px;
+ background-color: #fff; /* Example background */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+ width: 100%;
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1000;
+        }
+ .navbar-left {
+ flex-grow: 1;
+        }
+ .navbar-middle {
+ flex-grow: 2;
+ text-align: center;
+        }
+ .navbar-right {
+        }
+ body {
+ padding-top: 70px; /* Adjust this value based on your navbar height */
+        }
+ .hero-section {
+ margin-top: 20px; /* Additional margin below the navbar if needed */
+        }
+ .featured-books-section {
         }
     </style>
 </head>
@@ -25,20 +49,7 @@
                     <p class="lead mb-4">
                         Explore our curated collection of bestsellers, new releases, and timeless classics.
                     </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a href="/books" class="btn btn-dark btn-lg px-4 me-md-2">
-                            Browse Books
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-                            </svg>
-                        </a>
-                        <a href="/cart" class="btn btn-outline-secondary btn-lg px-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-4 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                            </svg>
-                            View Cart
-                        </a>
-                    </div>
+ <div class="d-grid gap-2 d-md-flex justify-content-md-start"></div>
                 </div>
                 <div class="col-md-5 d-none d-md-block">
                     <img src="/cozy-bookshelf.png" alt="Bookshelf" class="img-fluid">
@@ -66,7 +77,7 @@
                         <p class="card-text text-muted" data-book-id="book123">Emily Henry</p>
                         <p class="card-text fw-bold">$34.99</p>
                         <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
-                    </div>
+ </div>
                 </div>
             </div>
             <div class="col">
@@ -77,7 +88,7 @@
                         <p class="card-text text-muted" data-book-id="book456">James Clear</p>
                         <p class="card-text fw-bold">$19.99</p>
                         <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
-                    </div>
+ </div>
                 </div>
             </div>
             <div class="col">
@@ -88,7 +99,7 @@
                         <p class="card-text text-muted" data-book-id="book789">Alex Michaelides</p>
                         <p class="card-text fw-bold">$24.99</p>
                         <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
-                    </div>
+ </div>
                 </div>
             </div>
         </div>
@@ -169,5 +180,18 @@
             });
         });
     </script>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span class="fw-bold h4">
+                <span class="bg-black text-white px-2 py-1">BOOK</span>
+                <span class="border border-black px-2 py-1">STORE</span>
+            </span>
+        </div>
+        <div class="navbar-middle">
+            <button class="btn btn-outline-secondary">Search</button>
+        </div>
+        <div class="navbar-right">
+        </div>
+    </nav>
 </body>
 </html>
