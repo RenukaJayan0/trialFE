@@ -29,8 +29,12 @@
  text-align: center;
         }
  .navbar-right {
+ display: flex;
+ align-items: center;
         }
  body {
+ display: flex;
+ flex-direction: column;
  padding-top: 70px; /* Adjust this value based on your navbar height */
         }
  .hero-section {
@@ -192,6 +196,11 @@
         </div>
         <div class="navbar-right">
         </div>
+ <div class="navbar-right">
+ <a href="login.html" class="btn btn-link text-dark text-decoration-none">Home</a>
+ <a href="cart.html" class="btn btn-link text-dark text-decoration-none">Cart</a>
+ <a href="login.html" class="btn btn-link text-dark text-decoration-none">Logout</a>
+ </div>
     </nav>
 </body>
 </html>
