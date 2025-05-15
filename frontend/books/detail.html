@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - Bookstore</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <a href="books.html" class="text-decoration-none text-muted mb-3 d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            Back to Books
+        </a>
+
+        <div class="row g-4">
+            <!-- Book Image Column -->
+            <div class="col-md-6">
+                <div id="book-image" class="bg-light p-4 rounded d-flex justify-content-center align-items-center" style="min-height: 400px;">
+                    <!-- Book image will be loaded here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Book Details Column -->
+            <div class="col-md-6">
+                <div id="book-details">
+                    <!-- Book details will be loaded here by JavaScript -->
+                </div>
+
+                <div id="quantity-selector" class="mb-4">
+                    <label for="quantity" class="form-label me-2">Quantity:</label>
+                    <div class="input-group" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" id="decrement-quantity">-</button>
+                        <span class="form-control text-center" id="quantity-display">1</span>
+                        <button class="btn btn-outline-secondary" type="button" id="increment-quantity">+</button>
+                    </div>
+                </div>
+
+                <!-- Add to cart button -->
+                <button id="add-to-cart" class="btn btn-dark w-100">Add to Cart</button>
+
+                <!-- Add to cart button will go here -->
+                <div id="add-to-cart-button">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Sample book data (same as in books/page.html)
+        const booksData = [
+            {
+                id: "1",
+                title: "Great Big Beautiful Life",
+                author: "Emily Henry",
+                price: 34.99,
+                image: "/open-book-library.png",
+                description:
+                    "A heartwarming novel about finding joy in unexpected places. Follow the journey of protagonist Sarah as she navigates life's challenges and discovers that beauty can be found in the most unexpected moments. This New York Times bestseller has captivated readers worldwide with its authentic characters and emotional depth.",
+                category: "Fiction",
+                pages: 384,
+                publisher: "Berkley",
+                publicationDate: "April 23, 2024",
+                isbn: "978-0593441275",
+            },
+            {
+                id: "2",
+                title: "The Let Them Theory",
+                author: "Mel Robbins",
+                price: 28.98,
+                image: "/self-help-book.png",
+                description:
+                    "A groundbreaking approach to personal development and growth. In this transformative book, Mel Robbins introduces a revolutionary framework for letting go of what's holding you back and embracing your true potential. Based on years of research and real-world application, this book provides practical strategies for overcoming self-doubt and building confidence.",
+                category: "Self-Help",
+                pages: 272,
+                publisher: "Hay House Inc.",
+                publicationDate: "May 2, 2023",
+                isbn: "978-1401971090",
+            },
+            {
+                id: "3",
+                title: "King of Envy",
+                author: "Ana Huang",
+                price: 16.99,
+                image: "/open-book-library.png",
+                description:
+                    "A passionate romance that will keep you turning pages. When Alessandra meets the enigmatic CEO Christian King, she has no idea that their chance encounter will change her life forever. As their attraction grows, so do the secrets between them. This steamy romance explores themes of trust, vulnerability, and the power of love to heal even the deepest wounds.",
+                category: "Romance",
+                pages: 416,
+                publisher: "Bloom Books",
+                publicationDate: "March 19, 2024",
+                isbn: "978-1728274881",
+            },
+            {
+                id: "4",
+                title: "The Silent Patient",
+                author: "Alex Michaelides",
+                price: 24.99,
+                image: "/open-book-library.png",
+                description:
+                    "A psychological thriller that will keep you guessing until the end. Alicia Berenson's life is seemingly perfect. A famous painter married to an in-demand fashion photographer, she lives in a grand house in one of London's most desirable areas. One evening her husband Gabriel returns home late from a fashion shoot, and Alicia shoots him five five times in the face, and then never speaks another word.",
+                category: "Thriller",
+                pages: 336,
+                publisher: "Celadon Books",
+                publicationDate: "February 5, 2019",
+                isbn: "978-1250301697",
+            },
+        ];
+
+        // Get book ID from URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookId = urlParams.get('id');
+
+        // Find the book with the matching ID
+        const book = booksData.find(b => b.id === bookId);
+
+        const bookImageDiv = document.getElementById('book-image');
+        const bookDetailsDiv = document.getElementById('book-details');
+
+        if (book) {
+            // Populate book image
+            const img = document.createElement('img');
+            img.src = book.image;
+            img.alt = book.title;
+            img.classList.add('img-fluid', 'max-h-100'); // Use img-fluid for responsiveness
+            bookImageDiv.appendChild(img);
+
+            // Populate book details
+            bookDetailsDiv.innerHTML = `
+                <h1 class="h3 mb-2">${book.title}</h1>
+                <p class="lead text-muted mb-3">by ${book.author}</p>
+                <p class="h4 fw-bold mb-4">$${book.price.toFixed(2)}</p>
+                <p>${book.description}</p>
+
+                <h5 class="mt-4 mb-2">Specifications</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Category:</strong> ${book.category}</li>
+                    <li><strong>Pages:</strong> ${book.pages}</li>
+                    <li><strong>Publisher:</strong> ${book.publisher}</li>
+                    <li><strong>Publication Date:</strong> ${book.publicationDate}</li>
+                    <li><strong>ISBN:</strong> ${book.isbn}</li>
+                </ul>
+            `;
+        } else {
+            // Handle book not found
+            bookDetailsDiv.innerHTML = "<p class='text-danger'>Book not found.</p>";
+            // Hide quantity selector and add to cart button if book not found
+            document.getElementById('quantity-selector').style.display = 'none';
+            document.getElementById('add-to-cart-button').style.display = 'none';
+        }
+
+        // Quantity selector logic
+        let quantity = 1;
+        const quantityDisplay = document.getElementById('quantity-display');
+        const decrementButton = document.getElementById('decrement-quantity');
+        const incrementButton = document.getElementById('increment-quantity');
+        const addToCartButton = document.getElementById('add-to-cart');
+
+        decrementButton.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                quantityDisplay.textContent = quantity;
+            }
+        });
+
+        incrementButton.addEventListener('click', () => {
+            quantity++;
+            quantityDisplay.textContent = quantity;
+        });
+
+        addToCartButton.addEventListener('click', () => {
+            alert(`Added ${quantity} of ${book.title} to cart!`);
+        }
+    </script>
+</body>
+</html>

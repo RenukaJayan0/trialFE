@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Bookstore</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Order History</h1>
+
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-4">
+                <!-- Sidebar content will go here -->
+                <div id="account-sidebar">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </div>
+                            </div>
+                            <h2 class="card-title h5">Lisa Kim</h2>
+                            <p class="card-text text-muted">Member since April 2024</p>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <a href="/frontend/account.html" class="list-group-item list-group-item-action">
+                            Account Overview
+                        </a>
+                        <a href="/frontend/account/orders.html" class="list-group-item list-group-item-action active" aria-current="true">
+                            Order History
+                        </a>
+                        <a href="/frontend/account/settings.html" class="list-group-item list-group-item-action">
+                            Account Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <!-- Order history will go here -->
+                <div id="order-history-list">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Sample order history data
+        const orderHistory = [
+            {
+                id: "ORD-123456",
+                date: "May 10, 2024",
+                total: 89.97,
+                status: "Delivered",
+                items: [
+                    { title: "Great Big Beautiful Life", quantity: 1, price: 34.99 },
+                    { title: "The Let Them Theory", quantity: 1, price: 28.98 },
+                    { title: "King of Envy", quantity: 1, price: 16.99 },
+                ],
+            },
+            {
+                id: "ORD-789012",
+                date: "April 22, 2024",
+                total: 44.98,
+                status: "Delivered",
+                items: [
+                    { title: "Atomic Habits", quantity: 1, price: 19.99 },
+                    { title: "The Midnight Library", quantity: 1, price: 24.99 },
+                ],
+            },
+            {
+                id: "ORD-345678",
+                date: "March 15, 2024",
+                total: 67.97,
+                status: "Delivered",
+                items: [
+                    { title: "The Silent Patient", quantity: 1, price: 24.99 },
+                    { title: "Great Big Beautiful Life", quantity: 1, price: 34.99 },
+                    { title: "King of Envy", quantity: 1, price: 16.99 },
+                ],
+            },
+        ];
+
+        const orderHistoryList = document.getElementById('order-history-list');
+
+        function renderOrderHistory() {
+            orderHistoryList.innerHTML = ''; // Clear previous content
+            orderHistory.forEach(order => {
+                const card = document.createElement('div');
+                card.classList.add('card', 'mb-4');
+
+                card.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="card-title mb-0">${order.id}</h5>
+                                <p class="card-text text-muted">${order.date}</p>
+                            </div>
+                            <div class="text-end">
+                                <h5 class="card-title mb-0">$${order.total.toFixed(2)}</h5>
+                                <p class="card-text text-success">${order.status}</p>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush mb-3">
+                            ${order.items.map(item => `<li class="list-group-item d-flex justify-content-between">${item.quantity} x ${item.title} <span>$${(item.price * item.quantity).toFixed(2)}</span></li>`).join('')}
+                        </ul>
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-outline-secondary btn-sm">View Order Details</a>
+                            <a href="#" class="btn btn-dark btn-sm">Buy Again</a>
+                        </div>
+                    </div>
+                `;
+                orderHistoryList.appendChild(card);
+            });
+        }
+
+        renderOrderHistory(); // Render on page load
+    </script>
+</body>
+</html>

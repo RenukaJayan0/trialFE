@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Bookstore</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Shopping Cart</h1>
+
+        <!-- Cart content will be rendered here by JavaScript -->
+        <div id="cart-content">
+            <!-- Empty cart message or cart items and summary -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        let cartItems = [
+            { id: '1', title: 'Great Big Beautiful Life', author: 'Emily Henry', price: 34.99, quantity: 2, image: '/abstract-book-cover.png' },
+            { id: '5', title: 'Atomic Habits', author: 'James Clear', price: 19.99, quantity: 1, image: '/placeholder.svg?key=ggpqe' },
+        ];
+
+        const cartContentDiv = document.getElementById('cart-content');
+
+        const updateQuantity = (id, newQuantity) => {
+            const itemIndex = cartItems.findIndex(item => item.id === id);
+            if (itemIndex > -1) {
+                if (newQuantity > 0) {
+                    cartItems[itemIndex].quantity = newQuantity;
+                } else {
+                    removeFromCart(id);
+                }
+                renderCart();
+            }
+        };
+
+        const removeFromCart = (id) => {
+            cartItems = cartItems.filter(item => item.id !== id);
+            renderCart();
+        };
+
+        const getCartTotal = () => {
+            return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        };
+
+        const renderCart = () => {
+            cartContentDiv.innerHTML = ''; // Clear current content
+
+            if (cartItems.length === 0) {
+                cartContentDiv.innerHTML = `
+                    <div class="text-center py-5 bg-light rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-bag mb-3 text-secondary" viewBox="0 0 16 16">
+                            <path d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                        </svg>
+                        <p class="lead mb-3">Your cart is empty</p>
+                        <a href="books.html" class="btn btn-dark">Browse Books</a>
+                    </div>
+                `;
+            } else {
+                const totalPrice = getCartTotal();
+                const shippingCost = totalPrice > 50 ? 0 : 4.99;
+                const tax = totalPrice * 0.08; // 8% tax
+                const orderTotal = totalPrice + shippingCost + tax;
+
+                let cartItemsHtml = '';
+                cartItems.forEach(item => {
+                    cartItemsHtml += `
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-2 d-flex align-items-center justify-content-center bg-light rounded-start">
+                                    <img src="${item.image || '/placeholder.svg'}" class="img-fluid rounded-start" alt="${item.title}" style="max-height: 100px;">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="card-title mb-0"><a href="book-details.html?id=${item.id}" class="text-decoration-none text-dark">${item.title}</a></h5>
+                                                <p class="card-text text-muted">${item.author}</p>
+                                            </div>
+                                            <p class="card-text">$${item.price.toFixed(2)}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                            <div class="btn-group" role="group" aria-label="Quantity">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-id="${item.id}" data-action="decrease" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                                <span class="btn btn-outline-secondary btn-sm disabled">${item.quantity}</span>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-id="${item.id}" data-action="increase">+</button>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <p class="card-text me-3 mb-0">$${(item.price * item.quantity).toFixed(2)}</p>
+                                                <button type="button" class="btn btn-outline-danger btn-sm" data-id="${item.id}" data-action="remove">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM6.146 4.146A.5.5 0 0 1 6.5 4h3a.5.5 0 0 1 .354.146l.621.622l.391.392a.5.5 0 0 1 .135.253L11 6H5l-.004-.004a.5.5 0 0 1 .135-.253l.391-.392l.621-.622zm2.293 1.647l-.621.621a.5.5 0 0 0 0 .708l.621.621a.5.5 0 0 0 .708-.708l-.621-.621a.5.5 0 0 0-.708 0z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                cartContentDiv.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-8">
+                            ${cartItemsHtml}
+                            <div class="mt-3">
+                                <a href="books.html" class="btn btn-outline-secondary">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light p-4">
+                                <h2 class="h5 mb-3">Order Summary</h2>
+                                <div class="d-flex justify-content-between text-sm mb-2">
+                                    <span>Subtotal</span>
+                                    <span>$${totalPrice.toFixed(2)}</span>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm mb-2">
+                                    <span>Shipping</span>
+                                    <span>${shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm mb-3">
+                                    <span>Tax</span>
+                                    <span>$${tax.toFixed(2)}</span>
+                                </div>
+                                <hr class="my-3">
+                                <div class="d-flex justify-content-between font-weight-bold mb-4">
+                                    <span>Total</span>
+                                    <span>$${orderTotal.toFixed(2)}</span>
+                                </div>
+                                <a href="payment.html" class="btn btn-dark btn-block">Proceed to Checkout</a>
+                                <p class="text-muted text-center mt-3 mb-0 text-sm">Free shipping on orders over $50</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Add event listeners after rendering
+                cartContentDiv.querySelectorAll('[data-action]').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.dataset.id;
+                        const action = e.target.dataset.action;
+                        if (action === 'increase') {
+                            const item = cartItems.find(item => item.id === id);
+                            if (item) updateQuantity(id, item.quantity + 1);
+                        } else if (action === 'decrease') {
+                            const item = cartItems.find(item => item.id === id);
+                            if (item) updateQuantity(id, item.quantity - 1);
+                        } else if (action === 'remove') {
+                            removeFromCart(id);
+                        }
+                    });
+                });
+            }
+        };
+
+        // Initial render
+        renderCart();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books - Bookstore</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Browse Books</h1>
+
+        <!-- Category filters will go here -->
+        <div id="category-filters" class="mb-4">
+        </div>
+
+        <!-- Books grid will go here -->
+        <div id="books-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Sample book data
+        const booksData = [
+            {
+                id: "1",
+                title: "Great Big Beautiful Life",
+                author: "Emily Henry",
+                price: 34.99,
+                image: "/abstract-book-cover.png",
+                description: "A heartwarming novel about finding joy in unexpected places.",
+                category: "Fiction",
+            },
+            {
+                id: "2",
+                title: "The Let Them Theory",
+                author: "Mel Robbins",
+                price: 28.98,
+                image: "/self-help-book.png",
+                description: "A groundbreaking approach to personal development and growth.",
+                category: "Self-Help",
+            },
+            {
+                id: "3",
+                title: "King of Envy",
+                author: "Ana Huang",
+                price: 16.99,
+                image: "/placeholder.svg?key=ap1f3",
+                description: "A passionate romance that will keep you turning pages.",
+                category: "Romance",
+            },
+            {
+                id: "4",
+                title: "The Silent Patient",
+                author: "Alex Michaelides",
+                price: 24.99,
+                image: "/placeholder.svg?key=8mf3i",
+                description: "A psychological thriller that will keep you guessing until the end.",
+                category: "Thriller",
+            },
+            {
+                id: "5",
+                title: "Atomic Habits",
+                author: "James Clear",
+                price: 19.99,
+                image: "/placeholder.svg?key=ggpqe",
+                description: "Tiny changes, remarkable results. A proven framework for improving every day.",
+                category: "Self-Help",
+            },
+            {
+                id: "6",
+                title: "The Midnight Library",
+                author: "Matt Haig",
+                price: 22.99,
+                image: "/fantasy-book.png",
+                description: "Between life and death there is a library. Would you choose a different life?",
+                category: "Fiction",
+            },
+        ];
+
+        // Categories for filtering
+        const categories = ["All", "Fiction", "Self-Help", "Romance", "Thriller"];
+
+        const categoryFiltersDiv = document.getElementById('category-filters');
+        const booksGridDiv = document.getElementById('books-grid');
+
+        function renderBooks(books) {
+            booksGridDiv.innerHTML = ''; // Clear current books
+            books.forEach(book => {
+                const bookCardHtml = `
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="${book.image || '/placeholder.svg'}" class="card-img-top" alt="${book.title}" style="object-fit: cover; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text text-muted">${book.author}</p>
+                                <p class="card-text font-weight-bold">$${book.price.toFixed(2)}</p>
+                                <a href="/books/${book.id}" class="btn btn-primary w-100 mb-2">View Details</a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-book-title="${book.title}">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                booksGridDiv.innerHTML += bookCardHtml;
+            });
+
+            // Add event listeners to Add to Cart buttons
+            booksGridDiv.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const bookTitle = event.target.dataset.bookTitle;
+                    alert(`${bookTitle} added to cart! (This is a basic alert, actual cart logic would be here)`);
+                });
+            });
+        }
+
+        function renderCategoryFilters(selectedCategory) {
+            categoryFiltersDiv.innerHTML = ''; // Clear current filters
+            categories.forEach(category => {
+                const buttonClass = selectedCategory === category ? 'btn btn-dark' : 'btn btn-outline-secondary';
+                const buttonHtml = `<button class="${buttonClass} me-2" data-category="${category}">${category}</button>`;
+                categoryFiltersDiv.innerHTML += buttonHtml;
+            });
+
+            // Add event listeners to category buttons
+            categoryFiltersDiv.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const category = event.target.dataset.category;
+                    renderCategoryFilters(category); // Update active button styling
+
+                    const filteredBooks = category === "All" ? booksData : booksData.filter(book => book.category === category);
+                    renderBooks(filteredBooks);
+                });
+            });
+        }
+
+        // Initial render
+        renderCategoryFilters("All");
+        renderBooks(booksData);
+
+    </script>
+</body>
+</html>
