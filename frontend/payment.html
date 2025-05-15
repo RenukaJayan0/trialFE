@@ -60,27 +60,23 @@
  <h2 class="h5 mb-0">Payment Information</h2>
  </div>
  <div class="mb-3">
- <label for="nameOnCard" class="form-label">Name on Card</label>
- <input type="text" class="form-control" id="nameOnCard" name="nameOnCard" placeholder="John Doe" required>
+ <h3 class="h6 mb-3">Choose a Payment Option</h3>
+ <div class="form-check">
+ <input class="form-check-input" type="radio" name="paymentOption" id="paypal" value="paypal" checked>
+ <label class="form-check-label" for="paypal">
+                                Paypal
+ </label>
  </div>
- <div class="mb-3">
- <label for="cardNumber" class="form-label">Card Number</label>
- <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+ <div class="form-check">
+ <input class="form-check-input" type="radio" name="paymentOption" id="gpay" value="gpay">
+ <label class="form-check-label" for="gpay">
+                                GPay
+ </label>
  </div>
- <div class="row g-3">
- <div class="col-md-6">
- <label for="expirationDate" class="form-label">Expiration Date</label>
- <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="MM/YY" required>
- </div>
- <div class="col-md-6">
- <label for="cvv" class="form-label">CVV</label>
- <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123" required>
- </div>
- </div>
- <div class="form-check mt-3">
- <input class="form-check-input" type="checkbox" value="" id="saveCard">
- <label class="form-check-label" for="saveCard">
- Save card for future purchases
+ <div class="form-check">
+ <input class="form-check-input" type="radio" name="paymentOption" id="card" value="card">
+ <label class="form-check-label" for="card">
+                                Card
  </label>
  </div>
                     </div>
@@ -98,7 +94,7 @@
                         <!-- Order summary content will be rendered here by JavaScript -->
                     </div>
 
-                    <button type="submit" class="btn btn-dark w-100">Complete Order</button>
+                    <button type="submit" class="btn btn-dark w-100">Confirm Payment</button>
                 </form>
             </div>
 

@@ -164,9 +164,19 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>$${book.price.toFixed(2)}</td>
-                <td><button class="btn btn-dark btn-sm">Edit</button></td>
+                <td>
+                    <button class="btn btn-dark btn-sm">Edit</button>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+
+                </td>
             `;
             booksTableBody.appendChild(row);
+        });
+
+        const addBookButton = document.querySelector('a[href="add-book.html"]');
+        addBookButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            window.location.href = 'add-book.html'; // Redirect to add-book.html
         });
 
         const usersTableBody = document.getElementById('users-table-body');

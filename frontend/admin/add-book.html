@@ -91,7 +91,14 @@
                     <!-- Buttons will go here -->
                     <div id="form-buttons" class="d-flex justify-content-end gap-3 mt-4">
                         <button type="button" class="btn btn-outline-secondary">Cancel</button>
-                        <button type="submit" class="btn btn-dark">Save Book</button>
+                        <button type="submit" class="btn btn-dark" id="save-book-button">Save Book</button>
+<script>
+    document.getElementById('save-book-button').addEventListener('click', function() {
+        // This is a client-side redirect.
+        // For actual book saving, you'd perform form submission or an API call here first.
+        window.location.href = 'dashboard.html';
+    });
+</script>
                     </div>
                 </form>
             </div>
