@@ -163,20 +163,11 @@
             }
         };
 
-        // Add event listeners for the new buttons
-        document.addEventListener('DOMContentLoaded', () => {
-            const continueShoppingBtn = document.getElementById('continue-shopping-btn');
-            const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
-
-            if (continueShoppingBtn) {
-                continueShoppingBtn.addEventListener('click', () => {
-                    window.location.href = 'index.html';
-                });
-            }
-            if (proceedToCheckoutBtn) {
-                proceedToCheckoutBtn.addEventListener('click', () => {
-                    window.location.href = 'payment.html';
-                });
+        document.getElementById('cart-content').addEventListener('click', (event) => {
+            if (event.target.id === 'continue-shopping-btn') {
+                window.location.href = 'index.html';
+            } else if (event.target.id === 'proceed-to-checkout-btn') {
+                window.location.href = 'payment.html';
             }
         });
 
