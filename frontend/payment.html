@@ -21,8 +21,16 @@
         <div class="row g-4">
             <!-- Form Column -->
             <div class="col-lg-8">
-                <form id="payment-form">
-                    <!-- Billing Address section will go here -->
+                <form id="payment-form" class="space-y-4">
+                    <!-- Order Summary (for small screens) -->
+                    <div id="order-summary-sm" class="card p-4 mb-4 d-lg-none">
+                        <!-- Order summary content will be rendered here by JavaScript -->
+                    </div>
+
+
+
+
+                    <!-- Billing Address section -->
                     <div id="billing-address-section" class="card p-4 mb-4">
  <h2 class="h5 mb-4">Billing Address</h2>
  <div class="mb-3">
@@ -51,7 +59,7 @@
  </div>
                     </div>
 
-                    <!-- Payment Information section will go here -->
+                    <!-- Payment Information section -->
                     <div id="payment-information-section" class="card p-4 mb-4">
  <div class="d-flex align-items-center mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card me-2" viewBox="0 0 16 16">
@@ -89,17 +97,13 @@
                         <p class="mb-0">Your payment information is secure and encrypted</p>
                     </div>
 
-                    <!-- Order Summary (for small screens) -->
-                    <div id="order-summary-sm" class="d-lg-none">
-                        <!-- Order summary content will be rendered here by JavaScript -->
-                    </div>
-
                     <button type="submit" class="btn btn-dark w-100">Confirm Payment</button>
                 </form>
             </div>
 
             <!-- Order Summary Column (for large screens) -->
             <div class="col-lg-4 d-none d-lg-block">
+                <!-- Sticky Order Summary -->
                  <div id="order-summary-lg" class="card p-4 sticky-top">
                     <!-- Order summary content will be rendered here by JavaScript -->
                 </div>
