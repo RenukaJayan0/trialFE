@@ -45,59 +45,15 @@
         }
     </style>
 </head>
-    <div class="card p-4">
-        <div class="card-header bg-white border-0 text-center pb-0">
-            <div class="mb-3">
-                <div class="fw-bold h4">
-                    <span class="bg-black text-white px-2 py-1">BOOK</span>
-                    <span class="border border-black px-2 py-1">STORE</span>
-                </div>
-            </div>
-            <h5 class="card-title">Welcome back</h5>
-            <p class="card-text text-muted">Enter your credentials to access your account</p>
-        </div>
-        <div class="card-body pt-0">
-            <form>
-                <div class="mb-3 space-y-2">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="your.email@example.com" required>
-                </div>
-                <div class="mb-4 space-y-2">
-                    <div>
-                        <label for="password" class="form-label">Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-dark w-100 py-2">Sign In</button>
- <button id="admin-login-button" class="btn btn-secondary w-100 py-2 mt-2">Admin Login</button>
-            </form>
-        </div>
-        <div class="card-footer bg-white border-0 text-center pt-0">
-            <div class="mb-2">
-                Don't have an account?
-                <a href="./account/settings.html" class="text-dark fw-bold text-decoration-none">
-                    Sign up
-                </a>
-            </div>
-            <div class="text-muted small mt-3">
-                By signing in, you agree to our
-                <a href="/terms" class="text-muted text-decoration-underline">
-                    Terms of Service
-                </a>
-                and
-                <a href="/privacy" class="text-muted text-decoration-underline">
-                    Privacy Policy
-                </a>
-            </div>
-        </div>
-    </div>
+<div id="root"></div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script>
-        const signInButton = document.querySelector('button[type="submit"]');
-        signInButton.addEventListener('click', function(event) {
+        /* This JavaScript will be replaced by React functionality */
+        const signInButton = document.querySelector('button[type="submit"]'); /* This line might need adjustment depending on how React renders the button */
+        if (signInButton) {
+            signInButton.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default form submission
             window.location.href = 'index.html'; // Redirect to index.html
         });
@@ -108,7 +64,7 @@
  window.location.href = 'admin.html'; // Redirect to admin.html
  });
     </script>
-
+ <script src="../dist/bundle.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

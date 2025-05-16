@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {},
   "dependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/preset-react": "^7.27.1",
     "@radix-ui/react-alert-dialog": "latest",
     "@radix-ui/react-avatar": "latest",
     "@radix-ui/react-checkbox": "latest",
@@ -17,13 +19,19 @@
     "@radix-ui/react-switch": "latest",
     "@radix-ui/react-tooltip": "latest",
     "autoprefixer": "^10.4.20",
+    "babel-loader": "^10.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "express": "^5.1.0",
     "lucide-react": "^0.454.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0",
     "tailwind-merge": "^2.5.5",
     "tailwind-variants": "^0.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1"
   },
   "devDependencies": {
     "@types/node": "^22",

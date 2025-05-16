@@ -32,142 +32,10 @@
  display: flex;
  align-items: center;
         }
- body {
- display: flex;
- flex-direction: column;
- padding-top: 70px; /* Adjust this value based on your navbar height */
-        }
- .hero-section {
- margin-top: 20px; /* Additional margin below the navbar if needed */
-        }
- .featured-books-section {
-        }
     </style>
 </head>
 <body>
-    <section class="bg-light rounded-3 overflow-hidden p-5 mb-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7">
-                    <h1 class="display-4 fw-bold mb-3">Discover Your Next Favorite Book</h1>
-                    <p class="lead mb-4">
-                        Explore our curated collection of bestsellers, new releases, and timeless classics.
-                    </p>
- <div class="d-grid gap-2 d-md-flex justify-content-md-start"></div>
-                </div>
-                <div class="col-md-5 d-none d-md-block">
-                    <img src="/cozy-bookshelf.png" alt="Bookshelf" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="h3 mb-0">Featured Books</h2>
-            <a href="/books" class="text-decoration-none text-muted">
-                View All
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
-                </svg>
-            </a>
-        </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100 overflow-hidden">
-                    <img src="/abstract-book-cover.png" class="card-img-top" alt="Great Big Beautiful Life">
-                    <div class="card-body">
-                        <h5 class="card-title">Great Big Beautiful Life</h5>
-                        <p class="card-text text-muted" data-book-id="book123">Emily Henry</p>
-                        <p class="card-text fw-bold">$34.99</p>
-                        <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
- </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 overflow-hidden">
-                    <img src="/placeholder.svg?key=xg6ed" class="card-img-top" alt="Atomic Habits">
-                    <div class="card-body">
-                        <h5 class="card-title">Atomic Habits</h5>
-                        <p class="card-text text-muted" data-book-id="book456">James Clear</p>
-                        <p class="card-text fw-bold">$19.99</p>
-                        <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
- </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 overflow-hidden">
-                    <img src="/placeholder.svg?key=b9jcr" class="card-img-top" alt="The Silent Patient">
-                    <div class="card-body">
-                        <h5 class="card-title">The Silent Patient</h5>
-                        <p class="card-text text-muted" data-book-id="book789">Alex Michaelides</p>
-                        <p class="card-text fw-bold">$24.99</p>
-                        <a href="/books/detail.html" class="btn btn-dark w-100">View Details</a>
- </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container my-5">
-        <h2 class="h3 mb-4">Browse by Category</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div class="col">
-                <a href="/books?category=Fiction" class="d-block text-decoration-none">
-                    <div class="bg-light rounded-3 p-4 text-center h-100 d-flex align-items-center justify-content-center">
-                        <h3 class="h5 mb-0">Fiction</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="/books?category=Non-Fiction" class="d-block text-decoration-none">
-                    <div class="bg-light rounded-3 p-4 text-center h-100 d-flex align-items-center justify-content-center">
-                        <h3 class="h5 mb-0">Non-Fiction</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="/books?category=Self-Help" class="d-block text-decoration-none">
-                    <div class="bg-light rounded-3 p-4 text-center h-100 d-flex align-items-center justify-content-center">
-                        <h3 class="h5 mb-0">Self-Help</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="/books?category=Romance" class="d-block text-decoration-none">
-                    <div class="bg-light rounded-3 p-4 text-center h-100 d-flex align-items-center justify-content-center">
-                        <h3 class="h5 mb-0">Romance</h3>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="container my-5">
-        <div class="row text-center">
-            <div class="col-md-4 mb-4">
-                <div class="bg-light p-4 rounded-circle mx-auto mb-4" style="width: 80px; height: 80px;">
-                    <!-- Icon Placeholder -->
-                </div>
-                <h3 class="fw-bold h5 mb-2">Extensive Collection</h3>
-                <p class="text-muted">Thousands of titles across all genres to choose from.</p>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="bg-light p-4 rounded-circle mx-auto mb-4" style="width: 80px; height: 80px;">
-                    <!-- Icon Placeholder -->
-                </div>
-                <h3 class="fw-bold h5 mb-2">New Releases</h3>
-                <p class="text-muted">Stay up to date with the latest bestsellers and trending titles.</p>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="bg-light p-4 rounded-circle mx-auto mb-4" style="width: 80px; height: 80px;">
-                    <!-- Icon Placeholder -->
-                </div>
-                <h3 class="fw-bold h5 mb-2">Personalized Recommendations</h3>
-                <p class="text-muted">Discover books tailored to your reading preferences.</p>
-            </div>
-        </div>
-    </section>
+    <div id="root"></div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -184,23 +52,8 @@
             });
         });
     </script>
-    <nav class="navbar">
-        <div class="navbar-left">
-            <span class="fw-bold h4">
-                <span class="bg-black text-white px-2 py-1">BOOK</span>
-                <span class="border border-black px-2 py-1">STORE</span>
-            </span>
-        </div>
-        <div class="navbar-middle">
-            <button class="btn btn-outline-secondary">Search</button>
-        </div>
-        <div class="navbar-right">
-        </div>
- <div class="navbar-right">
- <a href="login.html" class="btn btn-link text-dark text-decoration-none">Home</a>
- <a href="cart.html" class="btn btn-link text-dark text-decoration-none">Cart</a>
- <a href="login.html" class="btn btn-link text-dark text-decoration-none">Logout</a>
- </div>
-    </nav>
+
+    <!-- Script to load the bundled React code -->
+    <script src="./dist/bundle.js"></script>
 </body>
 </html>
